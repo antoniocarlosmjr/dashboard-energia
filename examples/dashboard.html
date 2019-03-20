@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/pie-chart.png">
+  <link rel="icon" type="image/png" href="../assets/img/pie-chart.png">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <title>
+    Dashboard
+  </title>
+  <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
+  <!--     Fonts and icons     -->
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
+  <!-- CSS Files -->
+  <link href="../assets/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="../assets/css/paper-dashboard.css?v=2.0.0" rel="stylesheet" />
+  <!-- CSS Just for demo purpose, don't include it in your project -->
+  <link href="../assets/demo/demo.css" rel="stylesheet" />
+</head>
+<style>
+  #chartdiv1 {
+    width: 100%;
+    height: 500px;
+  }
+  #chartdiv2 {
+    width: 100%;
+    height: 300px;
+  }
+  #chartdiv3 {
+    width: 100%;
+    height: 300px;
+  }
+  #chartdiv4 {
+    width: 100%;
+    height: 500px;
+  }
+  #chartSimplePie {
+    width: 100%;
+    height: 300px;
+  }
+</style>
+
+<body class="">
+  <div class="wrapper ">
+    <div class="main-panel">
+      <!-- Navbar -->
+      <nav class="navbar navbar-expand-lg navbar-absolute fixed-top navbar-transparent">
+        <div class="container-fluid">
+          <div class="navbar-wrapper">
+            <div class="navbar-toggle"> 
+              <button type="button" class="navbar-toggler">
+                <span class="navbar-toggler-bar bar1"></span>
+                <span class="navbar-toggler-bar bar2"></span>
+                <span class="navbar-toggler-bar bar3"></span>
+              </button>
+            </div>
+            <a class="navbar-brand" href="#pablo">Energia no Nordeste do Brasil</a>
+          </div>
+        </div>
+      </nav>
+      <div class="content">
+        <div class="row">
+          <div class="col-md-3">
+            <div class="card ">
+              <div class="card-header ">
+                <div class="card-header">
+                  <h5 class="card-title">Evolutivo</h5>
+                </div>
+                <div class="card-body">
+                  <div id="chartdiv2"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="card ">
+              <div class="card-header ">
+                <div class="card-header">
+                  <h5 class="card-title">Programa luz para todos - 2017</h5>
+                </div>
+                <div class="card-body">
+                  <div id="chartdiv3"></div>
+                </div>
+            </div>
+            </div>
+          </div>
+          
+          <div class="col-md-3">
+            <div class="card ">
+              <div class="card-header ">
+                <div class="card-header">
+                  <h5 class="card-title">Reclamações</h5>
+                </div>
+                <div class="card-body">
+                  <div id="chartSimplePie"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+          <div class="row">
+            <div class="col-md-7">
+              <div class="card ">
+                <div class="card-header ">
+                  <div class="card-header">
+                    <h5 class="card-title">Colunas 3D</h5>
+                  </div>
+                  <div class="card-body">
+                    <div id="chartdiv1"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-5">
+              <div class="card ">
+                <div class="card-header ">
+                  <div class="card-header">
+                    <h5 class="card-title">Indicadores Quantitativos de Fiscalização</h5>
+                  </div>
+                  <div class="card-body">
+                    <div id="chartdiv4"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+      </div>
+      <footer class="footer footer-black  footer-white ">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="credits ml-auto">
+              <span class="copyright">
+                ©
+                <script>
+                  document.write(new Date().getFullYear())
+                </script>, made with <i class="fa fa-heart heart"></i> by Creative Tim
+              </span>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+  </div>
+  <!-- amCharts -->
+  <script src="https://www.amcharts.com/lib/4/core.js"></script>
+  <script src="https://www.amcharts.com/lib/4/charts.js"></script>
+  <script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
+  <script src="https://www.amcharts.com/lib/4/themes/dataviz.js"></script>
+  <script src="https://www.amcharts.com/lib/4/maps.js"></script>
+  <script src="https://www.amcharts.com/lib/4/geodata/worldLow.js"></script>
+
+  <!--   Core JS Files   -->
+  <script src="../assets/js/core/jquery.min.js"></script>
+  <script src="../assets/js/core/popper.min.js"></script>
+  <script src="../assets/js/core/bootstrap.min.js"></script>
+  <script src="../assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
+  <!--  Google Maps Plugin    -->
+  <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
+  <!-- Chart JS -->
+  <script src="../assets/js/plugins/chartjs.min.js"></script>
+  <!--  Notifications Plugin    -->
+  <script src="../assets/js/plugins/bootstrap-notify.js"></script>
+  <!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
+  <script src="../assets/js/paper-dashboard.min.js?v=2.0.0" type="text/javascript"></script>
+  <!-- Paper Dashboard DEMO methods, don't include it in your project! -->
+  <script src="../assets/demo/demo.js"></script>
+  <script>
+    $(document).ready(function() {
+      demo.initChartsPages();
+    });
+
+    /*
+    * Grafico 1 - id: chartdiv1 
+    */
+    am4core.useTheme(am4themes_animated);
+
+    // Create chart_3dcol instance
+    var chart_3dcol = am4core.create("chartdiv1", am4charts.XYChart3D);
+
+    // Add data
+    chart_3dcol.data = [{
+      "country": "USA",
+      "visits": 4025,
+      "color": chart_3dcol.colors.next()
+    }, {
+      "country": "China",
+      "visits": 1882,
+      "color": chart_3dcol.colors.next()
+    }, {
+      "country": "Japan",
+      "visits": 1809,
+      "color": chart_3dcol.colors.next()
+    }, {
+      "country": "Germany",
+      "visits": 1322,
+      "color": chart_3dcol.colors.next()
+    }, {
+      "country": "UK",
+      "visits": 1122,
+      "color": chart_3dcol.colors.next()
+    }, {
+      "country": "France",
+      "visits": 1114,
+      "color": chart_3dcol.colors.next()
+    }, {
+      "country": "India",
+      "visits": 984,
+      "color": chart_3dcol.colors.next()
+    }, {
+      "country": "Spain",
+      "visits": 711,
+      "color": chart_3dcol.colors.next()
+    }, {
+      "country": "Netherlands",
+      "visits": 665,
+      "color": chart_3dcol.colors.next()
+    }, {
+      "country": "Russia",
+      "visits": 580,
+      "color": chart_3dcol.colors.next()
+    }, {
+      "country": "South Korea",
+      "visits": 443,
+      "color": chart_3dcol.colors.next()
+    }, {
+      "country": "Canada",
+      "visits": 441,
+      "color": chart_3dcol.colors.next()
+    }, {
+      "country": "Brazil",
+      "visits": 395,
+      "color": chart_3dcol.colors.next()
+    }, {
+      "country": "Italy",
+      "visits": 386,
+      "color": chart_3dcol.colors.next()
+    }, {
+      "country": "Australia",
+      "visits": 384,
+      "color": chart_3dcol.colors.next()
+    }, {
+      "country": "Taiwan",
+      "visits": 338,
+      "color": chart_3dcol.colors.next()
+    }, {
+      "country": "Poland",
+      "visits": 328,
+      "color": chart_3dcol.colors.next()
+    }];
+
+    // Create axes
+    let categoryAxis = chart_3dcol.xAxes.push(new am4charts.CategoryAxis());
+    categoryAxis.dataFields.category = "country";
+    categoryAxis.renderer.labels.template.rotation = 270;
+    categoryAxis.renderer.labels.template.hideOversized = false;
+    categoryAxis.renderer.minGridDistance = 20;
+    categoryAxis.renderer.labels.template.horizontalCenter = "right";
+    categoryAxis.renderer.labels.template.verticalCenter = "middle";
+    categoryAxis.tooltip.label.rotation = 270;
+    categoryAxis.tooltip.label.horizontalCenter = "right";
+    categoryAxis.tooltip.label.verticalCenter = "middle";
+
+    let valueAxis = chart_3dcol.yAxes.push(new am4charts.ValueAxis());
+    valueAxis.title.text = "Countries";
+    valueAxis.title.fontWeight = "bold";
+
+    // Create series
+    var series = chart_3dcol.series.push(new am4charts.ColumnSeries3D());
+    series.dataFields.valueY = "visits";
+    series.dataFields.categoryX = "country";
+    series.name = "Visits";
+    series.tooltipText = "{categoryX}: [bold]{valueY}[/]";
+    series.columns.template.fillOpacity = .8;
+    series.columns.template.propertyFields.fill = "color";
+    
+    
+    var columnTemplate = series.columns.template;
+    columnTemplate.strokeWidth = 2;
+    columnTemplate.strokeOpacity = 1;
+    columnTemplate.stroke = am4core.color("#FFFFFF");
+
+    chart_3dcol.cursor = new am4charts.XYCursor();
+    chart_3dcol.cursor.lineX.strokeOpacity = 0;
+    chart_3dcol.cursor.lineY.strokeOpacity = 0;
+
+    // Enable export
+    chart_3dcol.exporting.menu = new am4core.ExportMenu();
+
+    /*
+    * Grafico 2 - id: chartdiv2 
+    */
+    am4core.useTheme(am4themes_animated);
+
+      /**
+       * Define data for each year
+       */
+      var chartData = {
+        "1995": [
+          { "sector": "Agriculture", "size": 6.6 },
+          { "sector": "Mining and Quarrying", "size": 0.6 },
+          { "sector": "Manufacturing", "size": 23.2 },
+          { "sector": "Electricity and Water", "size": 2.2 },
+          { "sector": "Construction", "size": 4.5 },
+          { "sector": "Trade (Wholesale, Retail, Motor)", "size": 14.6 },
+          { "sector": "Transport and Communication", "size": 9.3 },
+          { "sector": "Finance, real estate and business services", "size": 22.5 }],
+        "1996": [
+          { "sector": "Agriculture", "size": 6.4 },
+          { "sector": "Mining and Quarrying", "size": 0.5 },
+          { "sector": "Manufacturing", "size": 22.4 },
+          { "sector": "Electricity and Water", "size": 2 },
+          { "sector": "Construction", "size": 4.2 },
+          { "sector": "Trade (Wholesale, Retail, Motor)", "size": 14.8 },
+          { "sector": "Transport and Communication", "size": 9.7 },
+          { "sector": "Finance, real estate and business services", "size": 22 }],
+        "1997": [
+          { "sector": "Agriculture", "size": 6.1 },
+          { "sector": "Mining and Quarrying", "size": 0.2 },
+          { "sector": "Manufacturing", "size": 20.9 },
+          { "sector": "Electricity and Water", "size": 1.8 },
+          { "sector": "Construction", "size": 4.2 },
+          { "sector": "Trade (Wholesale, Retail, Motor)", "size": 13.7 },
+          { "sector": "Transport and Communication", "size": 9.4 },
+          { "sector": "Finance, real estate and business services", "size": 22.1 }],
+        "1998": [
+          { "sector": "Agriculture", "size": 6.2 },
+          { "sector": "Mining and Quarrying", "size": 0.3 },
+          { "sector": "Manufacturing", "size": 21.4 },
+          { "sector": "Electricity and Water", "size": 1.9 },
+          { "sector": "Construction", "size": 4.2 },
+          { "sector": "Trade (Wholesale, Retail, Motor)", "size": 14.5 },
+          { "sector": "Transport and Communication", "size": 10.6 },
+          { "sector": "Finance, real estate and business services", "size": 23 }],
+        "1999": [
+          { "sector": "Agriculture", "size": 5.7 },
+          { "sector": "Mining and Quarrying", "size": 0.2 },
+          { "sector": "Manufacturing", "size": 20 },
+          { "sector": "Electricity and Water", "size": 1.8 },
+          { "sector": "Construction", "size": 4.4 },
+          { "sector": "Trade (Wholesale, Retail, Motor)", "size": 15.2 },
+          { "sector": "Transport and Communication", "size": 10.5 },
+          { "sector": "Finance, real estate and business services", "size": 24.7 }],
+        "2000": [
+          { "sector": "Agriculture", "size": 5.1 },
+          { "sector": "Mining and Quarrying", "size": 0.3 },
+          { "sector": "Manufacturing", "size": 20.4 },
+          { "sector": "Electricity and Water", "size": 1.7 },
+          { "sector": "Construction", "size": 4 },
+          { "sector": "Trade (Wholesale, Retail, Motor)", "size": 16.3 },
+          { "sector": "Transport and Communication", "size": 10.7 },
+          { "sector": "Finance, real estate and business services", "size": 24.6 }],
+        "2001": [
+          { "sector": "Agriculture", "size": 5.5 },
+          { "sector": "Mining and Quarrying", "size": 0.2 },
+          { "sector": "Manufacturing", "size": 20.3 },
+          { "sector": "Electricity and Water", "size": 1.6 },
+          { "sector": "Construction", "size": 3.1 },
+          { "sector": "Trade (Wholesale, Retail, Motor)", "size": 16.3 },
+          { "sector": "Transport and Communication", "size": 10.7 },
+          { "sector": "Finance, real estate and business services", "size": 25.8 }],
+        "2002": [
+          { "sector": "Agriculture", "size": 5.7 },
+          { "sector": "Mining and Quarrying", "size": 0.2 },
+          { "sector": "Manufacturing", "size": 20.5 },
+          { "sector": "Electricity and Water", "size": 1.6 },
+          { "sector": "Construction", "size": 3.6 },
+          { "sector": "Trade (Wholesale, Retail, Motor)", "size": 16.1 },
+          { "sector": "Transport and Communication", "size": 10.7 },
+          { "sector": "Finance, real estate and business services", "size": 26 }],
+        "2003": [
+          { "sector": "Agriculture", "size": 4.9 },
+          { "sector": "Mining and Quarrying", "size": 0.2 },
+          { "sector": "Manufacturing", "size": 19.4 },
+          { "sector": "Electricity and Water", "size": 1.5 },
+          { "sector": "Construction", "size": 3.3 },
+          { "sector": "Trade (Wholesale, Retail, Motor)", "size": 16.2 },
+          { "sector": "Transport and Communication", "size": 11 },
+          { "sector": "Finance, real estate and business services", "size": 27.5 }],
+        "2004": [
+          { "sector": "Agriculture", "size": 4.7 },
+          { "sector": "Mining and Quarrying", "size": 0.2 },
+          { "sector": "Manufacturing", "size": 18.4 },
+          { "sector": "Electricity and Water", "size": 1.4 },
+          { "sector": "Construction", "size": 3.3 },
+          { "sector": "Trade (Wholesale, Retail, Motor)", "size": 16.9 },
+          { "sector": "Transport and Communication", "size": 10.6 },
+          { "sector": "Finance, real estate and business services", "size": 28.1 }],
+        "2005": [
+          { "sector": "Agriculture", "size": 4.3 },
+          { "sector": "Mining and Quarrying", "size": 0.2 },
+          { "sector": "Manufacturing", "size": 18.1 },
+          { "sector": "Electricity and Water", "size": 1.4 },
+          { "sector": "Construction", "size": 3.9 },
+          { "sector": "Trade (Wholesale, Retail, Motor)", "size": 15.7 },
+          { "sector": "Transport and Communication", "size": 10.6 },
+          { "sector": "Finance, real estate and business services", "size": 29.1 }],
+        "2006": [
+          { "sector": "Agriculture", "size": 4 },
+          { "sector": "Mining and Quarrying", "size": 0.2 },
+          { "sector": "Manufacturing", "size": 16.5 },
+          { "sector": "Electricity and Water", "size": 1.3 },
+          { "sector": "Construction", "size": 3.7 },
+          { "sector": "Trade (Wholesale, Retail, Motor)", "size": 14.2 },
+          { "sector": "Transport and Communication", "size": 12.1 },
+          { "sector": "Finance, real estate and business services", "size": 29.1 }],
+        "2007": [
+          { "sector": "Agriculture", "size": 4.7 },
+          { "sector": "Mining and Quarrying", "size": 0.2 },
+          { "sector": "Manufacturing", "size": 16.2 },
+          { "sector": "Electricity and Water", "size": 1.2 },
+          { "sector": "Construction", "size": 4.1 },
+          { "sector": "Trade (Wholesale, Retail, Motor)", "size": 15.6 },
+          { "sector": "Transport and Communication", "size": 11.2 },
+          { "sector": "Finance, real estate and business services", "size": 30.4 }],
+        "2008": [
+          { "sector": "Agriculture", "size": 4.9 },
+          { "sector": "Mining and Quarrying", "size": 0.3 },
+          { "sector": "Manufacturing", "size": 17.2 },
+          { "sector": "Electricity and Water", "size": 1.4 },
+          { "sector": "Construction", "size": 5.1 },
+          { "sector": "Trade (Wholesale, Retail, Motor)", "size": 15.4 },
+          { "sector": "Transport and Communication", "size": 11.1 },
+          { "sector": "Finance, real estate and business services", "size": 28.4 }],
+        "2009": [
+          { "sector": "Agriculture", "size": 4.7 },
+          { "sector": "Mining and Quarrying", "size": 0.3 },
+          { "sector": "Manufacturing", "size": 16.4 },
+          { "sector": "Electricity and Water", "size": 1.9 },
+          { "sector": "Construction", "size": 4.9 },
+          { "sector": "Trade (Wholesale, Retail, Motor)", "size": 15.5 },
+          { "sector": "Transport and Communication", "size": 10.9 },
+          { "sector": "Finance, real estate and business services", "size": 27.9 }],
+        "2010": [
+          { "sector": "Agriculture", "size": 4.2 },
+          { "sector": "Mining and Quarrying", "size": 0.3 },
+          { "sector": "Manufacturing", "size": 16.2 },
+          { "sector": "Electricity and Water", "size": 2.2 },
+          { "sector": "Construction", "size": 4.3 },
+          { "sector": "Trade (Wholesale, Retail, Motor)", "size": 15.7 },
+          { "sector": "Transport and Communication", "size": 10.2 },
+          { "sector": "Finance, real estate and business services", "size": 28.8 }],
+        "2011": [
+          { "sector": "Agriculture", "size": 4.1 },
+          { "sector": "Mining and Quarrying", "size": 0.3 },
+          { "sector": "Manufacturing", "size": 14.9 },
+          { "sector": "Electricity and Water", "size": 2.3 },
+          { "sector": "Construction", "size": 5 },
+          { "sector": "Trade (Wholesale, Retail, Motor)", "size": 17.3 },
+          { "sector": "Transport and Communication", "size": 10.2 },
+          { "sector": "Finance, real estate and business services", "size": 27.2 }],
+        "2012": [
+          { "sector": "Agriculture", "size": 3.8 },
+          { "sector": "Mining and Quarrying", "size": 0.3 },
+          { "sector": "Manufacturing", "size": 14.9 },
+          { "sector": "Electricity and Water", "size": 2.6 },
+          { "sector": "Construction", "size": 5.1 },
+          { "sector": "Trade (Wholesale, Retail, Motor)", "size": 15.8 },
+          { "sector": "Transport and Communication", "size": 10.7 },
+          { "sector": "Finance, real estate and business services", "size": 28 }],
+        "2013": [
+          { "sector": "Agriculture", "size": 3.7 },
+          { "sector": "Mining and Quarrying", "size": 0.2 },
+          { "sector": "Manufacturing", "size": 14.9 },
+          { "sector": "Electricity and Water", "size": 2.7 },
+          { "sector": "Construction", "size": 5.7 },
+          { "sector": "Trade (Wholesale, Retail, Motor)", "size": 16.5 },
+          { "sector": "Transport and Communication", "size": 10.5 },
+          { "sector": "Finance, real estate and business services", "size": 26.6 }],
+        "2014": [
+          { "sector": "Agriculture", "size": 3.9 },
+          { "sector": "Mining and Quarrying", "size": 0.2 },
+          { "sector": "Manufacturing", "size": 14.5 },
+          { "sector": "Electricity and Water", "size": 2.7 },
+          { "sector": "Construction", "size": 5.6 },
+          { "sector": "Trade (Wholesale, Retail, Motor)", "size": 16.6 },
+          { "sector": "Transport and Communication", "size": 10.5 },
+          { "sector": "Finance, real estate and business services", "size": 26.5 }]
+      };
+
+      // Create chart_donut instance
+      var chart_donut = am4core.create("chartdiv2", am4charts.PieChart);
+
+      // Add data
+      chart_donut.data = [
+        { "sector": "Agriculture", "size": 6.6 },
+        { "sector": "Mining and Quarrying", "size": 0.6 },
+        { "sector": "Manufacturing", "size": 23.2 },
+        { "sector": "Electricity and Water", "size": 2.2 },
+        { "sector": "Construction", "size": 4.5 },
+        { "sector": "Trade (Wholesale, Retail, Motor)", "size": 14.6 },
+        { "sector": "Transport and Communication", "size": 9.3 },
+        { "sector": "Finance, real estate and business services", "size": 22.5 }
+      ];
+
+      // Add label
+      chart_donut.innerRadius = 50;
+      var label = chart_donut.seriesContainer.createChild(am4core.Label);
+      label.text = "1995";
+      label.horizontalCenter = "middle";
+      label.verticalCenter = "middle";
+      label.fontSize = 35;
+
+      // Add and configure Series
+      var pieSeries = chart_donut.series.push(new am4charts.PieSeries());
+      pieSeries.dataFields.value = "size";
+      pieSeries.dataFields.category = "sector";
+      pieSeries.labels.template.disabled = true;
+      pieSeries.ticks.template.disabled = true;
+
+      // Animate chart_donut data
+      var currentYear = 1995;
+      function getCurrentData() {
+        label.text = currentYear;
+        var data = chartData[currentYear];
+        currentYear++;
+        if (currentYear > 2014)
+          currentYear = 1995;
+        return data;
+      }
+
+      function loop() {
+        //chart_donut.allLabels[0].text = currentYear;
+        var data = getCurrentData();
+        for (var i = 0; i < data.length; i++) {
+          chart_donut.data[i].size = data[i].size;
+        }
+        chart_donut.invalidateRawData();
+        chart_donut.setTimeout(loop, 500);
+      }
+
+      loop();
+
+
+      /*
+      * Grafico 3 - id: chartdiv3 
+      */
+
+      // Themes begin
+      am4core.useTheme(am4themes_animated);
+      // Themes end
+
+      // Create chart instance
+      var chart3 = am4core.create("chartdiv3", am4charts.XYChart3D);
+
+      // Add data
+      chart3.data = [
+        {
+          "nomRegiao": "N",
+          "qtdLigacaoRealizada": 761304,
+          "qtdMetaOriginal": 470538,
+        },
+        {
+          "nomRegiao": "NE",
+          "qtdLigacaoRealizada": 1686927,
+          "qtdMetaOriginal": 1110405
+        },
+        {
+          "nomRegiao": "CO",
+          "qtdLigacaoRealizada": 222222,
+          "qtdMetaOriginal": 148617
+        },
+        {
+          "nomRegiao": "SE",
+          "qtdLigacaoRealizada": 502585,
+          "qtdMetaOriginal": 167178
+        },
+        {
+          "nomRegiao": "S ",
+          "qtdLigacaoRealizada": 215999,
+          "qtdMetaOriginal": 103262
+        }
+      ];
+
+      // Create axes
+      var categoryAxis3 = chart3.xAxes.push(new am4charts.CategoryAxis());
+      categoryAxis3.dataFields.category = "nomRegiao";
+      categoryAxis3.renderer.grid.template.location = 0;
+      categoryAxis3.renderer.minGridDistance = 30;
+
+      var valueAxis3 = chart3.yAxes.push(new am4charts.ValueAxis());
+      valueAxis3.title.text = "Número de ligações realizadas";
+      valueAxis3.renderer.labels.template.adapter.add("text", function (text) {
+        return text;
+      });
+
+      // Create series
+      var series = chart3.series.push(new am4charts.ColumnSeries3D());
+      series.dataFields.valueY = "qtdMetaOriginal";
+      series.dataFields.categoryX = "nomRegiao";
+      series.name = "Meta Original";
+      series.clustered = false;
+      series.columns.template.tooltipText = "Meta Original {category} (2017): [bold]{valueY}[/]";
+      series.columns.template.fillOpacity = 4.0;
+
+      var series2 = chart3.series.push(new am4charts.ColumnSeries3D());
+      series2.dataFields.valueY = "qtdLigacaoRealizada";
+      series2.dataFields.categoryX = "nomRegiao";
+      series2.name = "Ligações realizadas";
+      series2.clustered = false;
+      series2.columns.template.tooltipText = "Ligações realizadas {category} (2017): [bold]{valueY}[/]";
+
+      /*
+      * Grafico 4 - id: chartdiv4 
+      */
+      am4core.useTheme(am4themes_animated);
+      var chart4 = am4core.create("chartdiv4", am4charts.XYChart);
+      //chart4.dataSource.url = "/json/fiscalindicador.json";
+
+      // Add data
+      chart4.data = [
+        {
+          "qtdConstatacao": 167,
+          "anoReferencia": 1998,
+          "qtdNaoConformidade": 101,
+          "qtdRecomendacao": 880,
+          "qtdDeterminacao": 3120,
+          "qtdNotificacao": 70
+        },
+        {
+          "qtdConstatacao": 394,
+          "anoReferencia": 1999,
+          "qtdNaoConformidade": 306,
+          "qtdRecomendacao": 579,
+          "qtdDeterminacao": 1497,
+          "qtdNotificacao": 152
+        },
+        {
+          "qtdConstatacao": 1627,
+          "anoReferencia": 2000,
+          "qtdNaoConformidade": 625,
+          "qtdRecomendacao": 550,
+          "qtdDeterminacao": 522,
+          "qtdNotificacao": 300
+        },
+        {
+          "qtdConstatacao": 3693,
+          "anoReferencia": 2001,
+          "qtdNaoConformidade": 1049,
+          "qtdRecomendacao": 391,
+          "qtdDeterminacao": 2313,
+          "qtdNotificacao": 434
+        },
+        {
+          "qtdConstatacao": 2206,
+          "anoReferencia": 2002,
+          "qtdNaoConformidade": 1381,
+          "qtdRecomendacao": 566,
+          "qtdDeterminacao": 614,
+          "qtdNotificacao": 638
+        },
+        {
+          "qtdConstatacao": 2632,
+          "anoReferencia": 2003,
+          "qtdNaoConformidade": 2280,
+          "qtdRecomendacao": 258,
+          "qtdDeterminacao": 434,
+          "qtdNotificacao": 671
+        },
+        {
+          "qtdConstatacao": 2086,
+          "anoReferencia": 2004,
+          "qtdNaoConformidade": 1561,
+          "qtdRecomendacao": 352,
+          "qtdDeterminacao": 602,
+          "qtdNotificacao": 601
+        },
+        {
+          "qtdConstatacao": 3833,
+          "anoReferencia": 2005,
+          "qtdNaoConformidade": 2438,
+          "qtdRecomendacao": 351,
+          "qtdDeterminacao": 1481,
+          "qtdNotificacao": 781
+        },
+        {
+          "qtdConstatacao": 2895,
+          "anoReferencia": 2006,
+          "qtdNaoConformidade": 2298,
+          "qtdRecomendacao": 436,
+          "qtdDeterminacao": 985,
+          "qtdNotificacao": 806
+        },
+        {
+          "qtdConstatacao": 4483,
+          "anoReferencia": 2007,
+          "qtdNaoConformidade": 3940,
+          "qtdRecomendacao": 255,
+          "qtdDeterminacao": 1563,
+          "qtdNotificacao": 1076
+        },
+        {
+          "qtdConstatacao": 4404,
+          "anoReferencia": 2008,
+          "qtdNaoConformidade": 3766,
+          "qtdRecomendacao": 296,
+          "qtdDeterminacao": 1314,
+          "qtdNotificacao": 1060
+        },
+        {
+          "qtdConstatacao": 4046,
+          "anoReferencia": 2009,
+          "qtdNaoConformidade": 3390,
+          "qtdRecomendacao": 282,
+          "qtdDeterminacao": 1263,
+          "qtdNotificacao": 1038
+        },
+        {
+          "qtdConstatacao": 3497,
+          "anoReferencia": 2010,
+          "qtdNaoConformidade": 2936,
+          "qtdRecomendacao": 337,
+          "qtdDeterminacao": 937,
+          "qtdNotificacao": 734
+        },
+        {
+          "qtdConstatacao": 3379,
+          "anoReferencia": 2011,
+          "qtdNaoConformidade": 2798,
+          "qtdRecomendacao": 288,
+          "qtdDeterminacao": 1092,
+          "qtdNotificacao": 840
+        },
+        {
+          "qtdConstatacao": 3164,
+          "anoReferencia": 2012,
+          "qtdNaoConformidade": 2583,
+          "qtdRecomendacao": 281,
+          "qtdDeterminacao": 2102,
+          "qtdNotificacao": 951
+        },
+        {
+          "qtdConstatacao": 3938,
+          "anoReferencia": 2013,
+          "qtdNaoConformidade": 3105,
+          "qtdRecomendacao": 802,
+          "qtdDeterminacao": 1239,
+          "qtdNotificacao": 1158
+        },
+        {
+          "qtdConstatacao": 3259,
+          "anoReferencia": 2014,
+          "qtdNaoConformidade": 2390,
+          "qtdRecomendacao": 448,
+          "qtdDeterminacao": 755,
+          "qtdNotificacao": 864
+        },
+        {
+          "qtdConstatacao": 3206,
+          "anoReferencia": 2015,
+          "qtdNaoConformidade": 2500,
+          "qtdRecomendacao": 495,
+          "qtdDeterminacao": 885,
+          "qtdNotificacao": 846
+        },
+        {
+          "qtdConstatacao": 1888,
+          "anoReferencia": 2016,
+          "qtdNaoConformidade": 1604,
+          "qtdRecomendacao": 168,
+          "qtdDeterminacao": 757,
+          "qtdNotificacao": 574
+        }
+      ];
+
+      // Create category axis
+      var categoryAxis4 = chart4.xAxes.push(new am4charts.CategoryAxis());
+      categoryAxis4.dataFields.category = "anoReferencia";
+      categoryAxis4.renderer.opposite = true;
+
+      // Create value axis
+      var valueAxis4 = chart4.yAxes.push(new am4charts.ValueAxis());
+      valueAxis4.title.text = "Quantidade de Indicadores";
+      valueAxis4.renderer.minLabelPosition = 0.01;
+
+      // Create series
+      var series1 = chart4.series.push(new am4charts.LineSeries());
+      series1.dataFields.valueY = "qtdConstatacao";
+      series1.dataFields.categoryX = "anoReferencia";
+      series1.name = "Constatações";
+      series1.strokeWidth = 3;
+      series1.bullets.push(new am4charts.CircleBullet());
+      series1.legendSettings.valueText = "{valueY}";
+      series1.visible = false;
+
+      var series2 = chart4.series.push(new am4charts.LineSeries());
+      series2.dataFields.valueY = "qtdNaoConformidade";
+      series2.dataFields.categoryX = "anoReferencia";
+      series2.name = 'Não conformidade';
+      series2.strokeWidth = 3;
+      series2.bullets.push(new am4charts.CircleBullet());
+      series2.legendSettings.valueText = "{valueY}";
+
+      var series3 = chart4.series.push(new am4charts.LineSeries());
+      series3.dataFields.valueY = "qtdRecomendacao";
+      series3.dataFields.categoryX = "anoReferencia";
+      series3.name = 'Recomendação';
+      series3.strokeWidth = 3;
+      series3.bullets.push(new am4charts.CircleBullet());
+      series3.legendSettings.valueText = "{valueY}";
+
+      var series4 = chart4.series.push(new am4charts.LineSeries());
+      series4.dataFields.valueY = "qtdDeterminacao";
+      series4.dataFields.categoryX = "anoReferencia";
+      series4.name = 'Determinação';
+      series4.strokeWidth = 3;
+      series4.bullets.push(new am4charts.CircleBullet());
+      series4.legendSettings.valueText = "{valueY}";
+
+      var series5 = chart4.series.push(new am4charts.LineSeries());
+      series5.dataFields.valueY = "qtdNotificacao";
+      series5.dataFields.categoryX = "anoReferencia";
+      series5.name = 'Notificação';
+      series5.strokeWidth = 3;
+      series5.bullets.push(new am4charts.CircleBullet());
+      series5.legendSettings.valueText = "{valueY}";
+
+      // Add chart cursor
+      chart4.cursor = new am4charts.XYCursor();
+      chart4.cursor.behavior = "zoomY";
+
+      // Add legend
+      chart4.legend = new am4charts.Legend();    
+
+
+      // Create chart instance
+      var chart_pie = am4core.create("chartSimplePie", am4charts.PieChart);
+
+      // Add data
+      chart_pie.dataSource.url = "/assets/data/registro.json";
+      chart_pie.dataSource.parser = new am4core.JSONParser();
+      // Add and configure Series
+      var pieSeries = chart_pie.series.push(new am4charts.PieSeries());
+      pieSeries.dataFields.value = "qtdReclamacao";
+      pieSeries.dataFields.category = "dscReclamacao";
+      pieSeries.slices.template.stroke = am4core.color("#fff");
+      pieSeries.slices.template.strokeWidth = 1;
+      pieSeries.slices.template.strokeOpacity = 1;
+      pieSeries.labels.template.disabled = true;
+      pieSeries.ticks.template.disabled = true;
+
+      // This creates initial animation
+      pieSeries.hiddenState.properties.opacity = 1;
+      pieSeries.hiddenState.properties.endAngle = -90;
+      pieSeries.hiddenState.properties.startAngle = -90;
+  </script>
+</body>
+
+</html>
