@@ -33,7 +33,7 @@
   }
   #chartdiv4 {
     width: 100%;
-    height: 380px;
+    height: 410px;
   }
   #chartdivmap {
     width: 100%;
@@ -360,70 +360,30 @@
     am4core.useTheme(am4themes_animated);
 
     // Create chart instance
-    var chart4 = am4core.create("chartdiv4", am4charts.RadarChart);
-
-    // Add data
-    chart4.data = [{
-      "category": "AL",
-      "value": 80,
-      "full": 100
-    }, {
-      "category": "BA",
-      "value": 35,
-      "full": 100
-    }, {
-      "category": "CE",
-      "value": 92,
-      "full": 100
-    }, {
-      "category": "MA",
-      "value": 68,
-      "full": 100
-    }, {
-      "category": "PB",
-      "value": 68,
-      "full": 100
-    }, {
-      "category": "PE",
-      "value": 68,
-      "full": 100
-    }, {
-      "category": "PI",
-      "value": 40,
-      "full": 100
-    }, {
-      "category": "RN",
-      "value": 50,
-      "full": 100
-    }, {
-      "category": "SE",
-      "value": 22,
-      "full": 100
-    }
-    ];
-
+    var chart6 = am4core.create("chartdiv4", am4charts.RadarChart);
+    chart6.dataSource.url = "/assets/data/ufkpi.json";
     // Make chart not full circle
-    chart4.startAngle = -90;
-    chart4.endAngle = 180;
-    chart4.innerRadius = am4core.percent(10);
+    chart6.startAngle = -90;
+    chart6.endAngle = 180;
+    chart6.innerRadius = am4core.percent(10);
 
     // Set number format
-    chart4.numberFormatter.numberFormat = "#.#'%'";
+    chart6.numberFormatter.numberFormat = "#.#'%'";
 
     // Create axes
-    var categoryAxis = chart4.yAxes.push(new am4charts.CategoryAxis());
-    categoryAxis.dataFields.category = "category";
+    var categoryAxis = chart6.yAxes.push(new am4charts.CategoryAxis());
+    categoryAxis.dataFields.category = "UF";
     categoryAxis.renderer.grid.template.location = 0;
     categoryAxis.renderer.grid.template.strokeOpacity = 0;
     categoryAxis.renderer.labels.template.horizontalCenter = "right";
     categoryAxis.renderer.labels.template.fontWeight = 500;
     categoryAxis.renderer.labels.template.fontSize = 8;
     categoryAxis.renderer.labels.template.adapter.add("fill", function(fill, target) {
-      return (target.dataItem.index >= 0) ? chart4.colors.getIndex(target.dataItem.index) : fill;
+      return (target.dataItem.index >= 0) ? chart6.colors.getIndex(target.dataItem.index) : fill;
     });
     categoryAxis.renderer.minGridDistance = 10;
 
-    var valueAxis = chart4.xAxes.push(new am4charts.ValueAxis());
+    var valueAxis = chart6.xAxes.push(new am4charts.ValueAxis());
     valueAxis.renderer.grid.template.strokeOpacity = 0;
     valueAxis.fontSize = 8;
     valueAxis.min = 0;
@@ -431,9 +391,9 @@
     valueAxis.strictMinMax = true;
 
     // Create series
-    var series1 = chart4.series.push(new am4charts.RadarColumnSeries());
+    var series1 = chart6.series.push(new am4charts.RadarColumnSeries());
     series1.dataFields.valueX = "full";
-    series1.dataFields.categoryY = "category";
+    series1.dataFields.categoryY = "UF";
     series1.clustered = false;
     series1.columns.template.fill = new am4core.InterfaceColorSet().getFor("alternativeBackground");
     series1.columns.template.fillOpacity = 0.08;
@@ -441,38 +401,20 @@
     series1.columns.template.strokeWidth = 0;
     series1.columns.template.radarColumn.cornerRadius = 20;
 
-    var series2 = chart4.series.push(new am4charts.RadarColumnSeries());
-    series2.dataFields.valueX = "value";
-    series2.dataFields.categoryY = "category";
+    var series2 = chart6.series.push(new am4charts.RadarColumnSeries());
+    series2.dataFields.valueX = "KPI";
+    series2.dataFields.categoryY = "UF";
     series2.clustered = false;
     series2.columns.template.strokeWidth = 0;
-    series2.columns.template.tooltipText = "{category}: [bold]{value}[/]";
+    series2.columns.template.tooltipText = "{UF}: [bold]{KPI}[/]";
     series2.columns.template.radarColumn.cornerRadius = 20;
 
     series2.columns.template.adapter.add("fill", function(fill, target) {
-      return chart4.colors.getIndex(target.dataItem.index);
+      return chart6.colors.getIndex(target.dataItem.index);
     });
 
     // Add cursor
-    chart4.cursor = new am4charts.RadarCursor();
-
-
-    /*
-    Chart id: chartdivmap - Mapa
-    */
-    var chart = am4core.create("chartdivmap", am4maps.MapChart);
-
-      // Set map definition
-      chart.geodata = am4geodata_brazilLow;
-
-      // Set projection
-      chart.projection = new am4maps.projections.Miller();
-
-      // Create map polygon series
-      var polygonSeries = chart.series.push(new am4maps.MapPolygonSeries());
-
-      // Make map load polygon (like country names) data from GeoJSON
-      polygonSeries.useGeodata = true;
+    chart6.cursor = new am4charts.RadarCursor();
   </script>
 </body>
 </html>
