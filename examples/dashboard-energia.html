@@ -71,7 +71,9 @@
                       </div>
                       <div class="col-md-7">
                         <h5 class="card-title"><strong>Total KiloWatts</strong></h5>
-                        <div class="number1"><h5>35908160</h5></div>
+                        <h5>
+                          <text type="number" id="number1"/>
+                        </h5>
                       </div>
                     </div>
                   </div>
@@ -86,7 +88,9 @@
                       </div>
                       <div class="col-md-7">
                         <h5 class="card-title"><strong>Total Biomassa</strong></h5>
-                        <h5>74816070</h5>
+                        <h5>
+                          <text type="number" id="number2"/>
+                        </h5>
                       </div>
                     </div>
                   </div>
@@ -101,7 +105,9 @@
                       </div>
                       <div class="col-md-7">
                         <h5 class="card-title"><strong>Total Usinas</strong></h5>
-                        <h5>261</h5>
+                        <h5>
+                          <text type="number" id="number3"/>
+                        </h5>
                       </div>
                     </div>
                   </div>
@@ -205,6 +211,24 @@
   <!-- Paper Dashboard DEMO methods, don't include it in your project! -->
   <script src="../assets/demo/demo.js"></script>
   <script>
+    $.getJSON('/assets/data/capacidadetotal.json', function(data1) {
+      total1 = data1.capacidadetotal[0].total;
+      $('#number1').val(total1);
+      $('#number1').html(total1);
+    });
+
+    $.getJSON('/assets/data/biomassatotal.json', function(data2) {
+      total2 = data2.biomassatotal[0].total;
+      $('#number2').val(total2);
+      $('#number2').html(total2);
+    });
+
+    $.getJSON('/assets/data/geracaototal.json', function(data3) {
+      total3 = data3.geracaototal[0].total;
+      $('#number3').val(total3);
+      $('#number3').html(total3);
+    });
+
     $(document).ready(function() {
         demo.initChartsPages();
     });
