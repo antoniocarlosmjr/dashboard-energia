@@ -107,7 +107,7 @@
               Dashboard desenvolvido pelos alunos: 
               <br> Antonio Carlos Martins Pereira Junior
               <br> Diego Michael Almeida Santana
-              <br> Oscálmi Ponto Freitas
+              <br> Oscálmi Porto Freitas
               <br> Rodrigo Akio Otsuka
             </span>
           </div>
@@ -218,6 +218,7 @@
     var valueAxis4 = chart4.yAxes.push(new am4charts.ValueAxis());
     valueAxis4.title.text = "Quantidade de Usinas";
     valueAxis4.renderer.minLabelPosition = 0.01;
+    valueAxis4.renderer.inversed = false;
 
     // Create series
     var series1 = chart4.series.push(new am4charts.LineSeries());
@@ -228,6 +229,7 @@
     series1.bullets.push(new am4charts.CircleBullet());
     series1.legendSettings.valueText = "{valueY}";
     series1.visible  = false;
+    series1.tooltipText = "{name} em {categoryX}: {valueY}";
 
     var series2 = chart4.series.push(new am4charts.LineSeries());
     series2.dataFields.valueY = "PequenaCentralHidreletrica";
@@ -236,6 +238,7 @@
     series2.strokeWidth = 3;
     series2.bullets.push(new am4charts.CircleBullet());
     series2.legendSettings.valueText = "{valueY}";
+    series2.tooltipText = "{name} em {categoryX}: {valueY}";
 
     var series3 = chart4.series.push(new am4charts.LineSeries());
     series3.dataFields.valueY = "UsinaEolica";
@@ -244,6 +247,7 @@
     series3.strokeWidth = 3;
     series3.bullets.push(new am4charts.CircleBullet());
     series3.legendSettings.valueText = "{valueY}";
+    series3.tooltipText = "{name} em {categoryX}: {valueY}";
 
     var series4 = chart4.series.push(new am4charts.LineSeries());
     series4.dataFields.valueY = "UsinaTermeletricaaGasNatural";
@@ -252,6 +256,7 @@
     series4.strokeWidth = 3;
     series4.bullets.push(new am4charts.CircleBullet());
     series4.legendSettings.valueText = "{valueY}";
+    series4.tooltipText = "{name} em {categoryX}: {valueY}";
 
     // Add chart cursor
     chart4.cursor = new am4charts.XYCursor();
