@@ -21,7 +21,7 @@
 <style>
   #chartdiv1 {
     width: 100%;
-    height: 380px;
+    height: 660px;
   }
   #chartdiv2 {
     width: 100%;
@@ -38,6 +38,10 @@
   #chartdivmap {
     width: 100%;
     height: 380px;
+  }
+  #numberdiv{
+    width: 100%;
+    height: 100px;
   }
 </style>
 
@@ -63,19 +67,21 @@
       </nav>
       <div class="content">
         <div class="row">
-              <div class="col-md-4">
+          <div class="col-md-8">
+            <div class="row">
+              <div class="col-md-6">
                 <div class="card ">
                   <div class="card-header ">
                     <div class="card-header">
-                      <h5 class="card-title">Capacidade Instalada em Kw por estado (2018)</h5>
+                      <h5 class="card-title">KPI- Key Performance Indicator</h5>
                     </div>
                     <div class="card-body">
-                      <div id="chartdiv1"></div>
+                      <div id="chartdiv4"></div>
                     </div>
                   </div>
                 </div>
               </div>
-              <div class="col-md-4">
+              <div class="col-md-6">
                 <div class="card ">
                   <div class="card-header ">
                     <div class="card-header">
@@ -87,45 +93,77 @@
                   </div>
                 </div>
               </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="card ">
+                  <div class="card-header ">
+                    <div class="card-header">
+                      <h5 class="card-title">Quantidade de usinas por estado e por tipo de empreendimento (2018)</h5>
+                    </div>
+                    <div class="card-body">
+                      <div id="chartdiv3"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="row">
               <div class="col-md-4">
                 <div class="card ">
                   <div class="card-header ">
                     <div class="card-header">
-                      <h5 class="card-title">Mapa do Nordeste - KPI para cada Unidade Federativa</h5>
+                      <h5 class="card-title">Total Capacidade</h5>
                     </div>
                     <div class="card-body">
-                  <div id="chartdivmap"></div>
+                      <div id="numberdiv"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="card ">
+                  <div class="card-header ">
+                    <div class="card-header">
+                      <h5 class="card-title">Total Biomassa</h5>
+                    </div>
+                    <div class="card-body">
+                      <div id="numberdiv"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="card ">
+                  <div class="card-header ">
+                    <div class="card-header">
+                      <h5 class="card-title">Total Usinas</h5>
+                    </div>
+                    <div class="card-body">
+                      <div id="numberdiv"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="card ">
+                  <div class="card-header ">
+                    <div class="card-header">
+                      <h5 class="card-title">Capacidade Instalada em Kw por estado (2018)</h5>
+                    </div>
+                    <div class="card-body">
+                      <div id="chartdiv1"></div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <div class="row">
-            <div class="col-md-8">
-                <div class="card ">
-                    <div class="card-header ">
-                        <div class="card-header">
-                            <h5 class="card-title">Quantidade de usinas por estado e por tipo de empreendimento (2018)</h5>
-                        </div>
-                        <div class="card-body">
-                            <div id="chartdiv3"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card ">
-                    <div class="card-header ">
-                        <div class="card-header">
-                            <h5 class="card-title">KPI- Key Performance Indicator</h5>
-                        </div>
-                        <div class="card-body">
-                            <div id="chartdiv4"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-          </div>
       </div>
       <footer class="footer footer-black  footer-white ">
         <div class="container-fluid">
@@ -220,13 +258,18 @@
     chart5.hiddenState.properties.opacity = 0;
     chart5.innerRadius = am4core.percent(40);
     chart5.depth = 150;
+    
     chart5.legend = new am4charts.Legend();
+    chart5.legend.scale = 0.8;
+    chart5.legend.position = "right";
 
     var series = chart5.series.push(new am4charts.PieSeries3D());
+    series.labels.template.disabled = true;
+    series.ticks.template.disabled = true;
     series.dataFields.value = "Tonelada";
     series.dataFields.depthValue = "Tonelada";
     series.dataFields.category = "UF";
-    series.slices.template.cornerRadius = 5;
+    series.slices.template.cornerRadius = 1;
     series.colors.step = 3;
       
     /*
