@@ -29,7 +29,15 @@
   }
   #chartdiv3 {
     width: 100%;
-    height: 350px;
+    height: 380px;
+  }
+  #chartdiv4 {
+    width: 100%;
+    height: 380px;
+  }
+  #chartdivMap {
+    width: 100%;
+    height: 380px;
   }
 </style>
 
@@ -55,33 +63,45 @@
       </nav>
       <div class="content">
         <div class="row">
-          <div class="col-md-6">
-            <div class="card ">
-              <div class="card-header ">
+              <div class="col-md-4">
+                <div class="card ">
+                  <div class="card-header ">
+                    <div class="card-header">
+                      <h5 class="card-title">Capacidade Instalada em Kw por estado (2018)</h5>
+                    </div>
+                    <div class="card-body">
+                      <div id="chartdiv1"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="card ">
+                  <div class="card-header ">
+                    <div class="card-header">
+                      <h5 class="card-title">Biomassa - Toneladas de produto agrícola (2017)</h5>
+                    </div>
+                    <div class="card-body">
+                      <div id="chartdiv2"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="card ">
+                  <div class="card-header ">
                 <div class="card-header">
-                  <h5 class="card-title">Capacidade Instalada em Kw por estado (2018)</h5>
+                  <h5 class="card-title">Mapa do Nordeste</h5>
                 </div>
                 <div class="card-body">
-                  <div id="chartdiv1"></div>
+                  <div id="chartdivMap"></div>
                 </div>
               </div>
             </div>
           </div>
-          <div class="col-md-6">
-            <div class="card ">
-              <div class="card-header ">
-                <div class="card-header">
-                  <h5 class="card-title">Biomassa - Toneladas de produto agrícola (2017)</h5>
-                </div>
-                <div class="card-body">
-                  <div id="chartdiv2"></div>
-                </div>
-            </div>
-            </div>
-          </div>
         </div>
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-8">
                 <div class="card ">
                     <div class="card-header ">
                         <div class="card-header">
@@ -93,7 +113,19 @@
                     </div>
                 </div>
             </div>
-        </div>
+            <div class="col-md-4">
+                <div class="card ">
+                    <div class="card-header ">
+                        <div class="card-header">
+                            <h5 class="card-title">KPI- Key Performance Indicator</h5>
+                        </div>
+                        <div class="card-body">
+                            <div id="chartdiv4"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+          </div>
       </div>
       <footer class="footer footer-black  footer-white ">
         <div class="container-fluid">
@@ -208,12 +240,19 @@
     // Create category axis
     var categoryAxis4 = chart4.xAxes.push(new am4charts.CategoryAxis());
     categoryAxis4.dataFields.category = "UF";
-    categoryAxis4.renderer.opposite = true;
-
+    categoryAxis4.startLocation = 0;
+    categoryAxis4.endLocation = 0.5 ;
+    categoryAxis4.renderer.grid.template.location = 0.5;
+    categoryAxis4.renderer.minGridDistance = 4;
+    categoryAxis4.renderer.labels.template.paddingLeft = 130;
+    categoryAxis4.renderer.labels.template.location = 0.0001;
+    
     // Create value axis
     var valueAxis4 = chart4.yAxes.push(new am4charts.ValueAxis());
     valueAxis4.title.text = "Quantidade de Usinas";
-    valueAxis4.renderer.minLabelPosition = 0.01;
+    valueAxis4.logarithmic = true;
+    // valueAxis4.renderer.location = 0;
+    // valueAxis4.renderer.minLabelPosition = 0.0001;
     valueAxis4.renderer.inversed = false;
 
     // Create series
@@ -224,7 +263,7 @@
     series1.strokeWidth = 3;
     series1.bullets.push(new am4charts.CircleBullet());
     series1.legendSettings.valueText = "{valueY}";
-    series1.visible  = false;
+    series1.visible  = true;
     series1.tooltipText = "{name} em {categoryX}: {valueY}";
 
     var series2 = chart4.series.push(new am4charts.LineSeries());
@@ -259,6 +298,106 @@
     chart4.cursor.behavior = "zoomY";
     // Add legend
     chart4.legend = new am4charts.Legend();
+
+    /* Gráfico 4 */
+    am4core.useTheme(am4themes_animated);
+
+    // Create chart instance
+    var chart4 = am4core.create("chartdiv4", am4charts.RadarChart);
+
+    // Add data
+    chart4.data = [{
+      "category": "AL",
+      "value": 80,
+      "full": 100
+    }, {
+      "category": "BA",
+      "value": 35,
+      "full": 100
+    }, {
+      "category": "CE",
+      "value": 92,
+      "full": 100
+    }, {
+      "category": "MA",
+      "value": 68,
+      "full": 100
+    }, {
+      "category": "PB",
+      "value": 68,
+      "full": 100
+    }, {
+      "category": "PE",
+      "value": 68,
+      "full": 100
+    }, {
+      "category": "PI",
+      "value": 40,
+      "full": 100
+    }, {
+      "category": "RN",
+      "value": 50,
+      "full": 100
+    }, {
+      "category": "SE",
+      "value": 22,
+      "full": 100
+    }
+    ];
+
+    // Make chart not full circle
+    chart4.startAngle = -90;
+    chart4.endAngle = 180;
+    chart4.innerRadius = am4core.percent(10);
+
+    // Set number format
+    chart4.numberFormatter.numberFormat = "#.#'%'";
+
+    // Create axes
+    var categoryAxis = chart4.yAxes.push(new am4charts.CategoryAxis());
+    categoryAxis.dataFields.category = "category";
+    categoryAxis.renderer.grid.template.location = 0;
+    categoryAxis.renderer.grid.template.strokeOpacity = 0;
+    categoryAxis.renderer.labels.template.horizontalCenter = "right";
+    categoryAxis.renderer.labels.template.fontWeight = 500;
+    categoryAxis.renderer.labels.template.fontSize = 8;
+    categoryAxis.renderer.labels.template.adapter.add("fill", function(fill, target) {
+      return (target.dataItem.index >= 0) ? chart4.colors.getIndex(target.dataItem.index) : fill;
+    });
+    categoryAxis.renderer.minGridDistance = 10;
+
+    var valueAxis = chart4.xAxes.push(new am4charts.ValueAxis());
+    valueAxis.renderer.grid.template.strokeOpacity = 0;
+    valueAxis.fontSize = 8;
+    valueAxis.min = 0;
+    valueAxis.max = 100;
+    valueAxis.strictMinMax = true;
+
+    // Create series
+    var series1 = chart4.series.push(new am4charts.RadarColumnSeries());
+    series1.dataFields.valueX = "full";
+    series1.dataFields.categoryY = "category";
+    series1.clustered = false;
+    series1.columns.template.fill = new am4core.InterfaceColorSet().getFor("alternativeBackground");
+    series1.columns.template.fillOpacity = 0.08;
+    series1.columns.template.cornerRadiusTopLeft = 20;
+    series1.columns.template.strokeWidth = 0;
+    series1.columns.template.radarColumn.cornerRadius = 20;
+
+    var series2 = chart4.series.push(new am4charts.RadarColumnSeries());
+    series2.dataFields.valueX = "value";
+    series2.dataFields.categoryY = "category";
+    series2.clustered = false;
+    series2.columns.template.strokeWidth = 0;
+    series2.columns.template.tooltipText = "{category}: [bold]{value}[/]";
+    series2.columns.template.radarColumn.cornerRadius = 20;
+
+    series2.columns.template.adapter.add("fill", function(fill, target) {
+      return chart4.colors.getIndex(target.dataItem.index);
+    });
+
+    // Add cursor
+    chart4.cursor = new am4charts.RadarCursor();
   </script>
 </body>
 </html>
